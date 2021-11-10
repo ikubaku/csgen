@@ -1,5 +1,7 @@
 = csgen
 
+image:https://github.com/ikubaku/csgen/workflows/rustfmt/badge.svg[]
+
 A Chouseisan ( https://chouseisan.com/ ) date list generator.
 
 == Usage
