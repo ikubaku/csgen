@@ -1,14 +1,13 @@
+use crate::csgen::CsGen;
 use std::fs::File;
 use std::io::{Read, Write};
 use std::path::PathBuf;
 use std::str::FromStr;
 use structopt::StructOpt;
-use crate::csgen::CsGen;
 
 use crate::csgen::settings::GenerationSettings;
 
 mod csgen;
-
 
 #[derive(StructOpt)]
 #[structopt(name = "csgen")]
@@ -26,13 +25,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     if opt.create_default {
         let mut template_file = File::create(PathBuf::from_str("csgen_settings.yaml")?)?;
         let default_settings = GenerationSettings::default();
-        template_file.write_fmt(format_args!("{}", serde_yaml::to_string(&default_settings)?.as_str()))?;
+        template_file.write_fmt(format_args!(
+            "{}",
+            serde_yaml::to_string(&default_settings)?.as_str()
+        ))?;
         return Ok(());
     }
 
-    let settings_filename =
-        opt.settings_filename.ok_or(
-            std::io::Error::new(std::io::ErrorKind::NotFound, "Expected settings filename."))?;
+    let settings_filename = opt.settings_filename.ok_or(std::io::Error::new(
+        std::io::ErrorKind::NotFound,
+        "Expected settings filename.",
+    ))?;
 
     let settings: GenerationSettings = {
         let mut settings_file = File::open(settings_filename)?;

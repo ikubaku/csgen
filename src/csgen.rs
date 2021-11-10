@@ -1,8 +1,8 @@
-use chrono::{Datelike, DateTime, Duration, Local, NaiveTime, Timelike};
 use crate::csgen::settings::GenerationSettings;
+use chrono::{DateTime, Datelike, Duration, Local, NaiveTime, Timelike};
 
-pub mod window;
 pub mod settings;
+pub mod window;
 
 pub struct CsGen {
     settings: GenerationSettings,
@@ -10,9 +10,7 @@ pub struct CsGen {
 
 impl CsGen {
     pub fn from_settings(settings: GenerationSettings) -> Self {
-        CsGen {
-            settings,
-        }
+        CsGen { settings }
     }
 
     pub fn generate(&self) {
@@ -31,17 +29,24 @@ impl CsGen {
         };
 
         let mut current_datetime = date
-            .with_hour(window.start.hour()).unwrap()
-            .with_minute(window.start.minute()).unwrap()
-            .with_second(window.start.second()).unwrap();
+            .with_hour(window.start.hour())
+            .unwrap()
+            .with_minute(window.start.minute())
+            .unwrap()
+            .with_second(window.start.second())
+            .unwrap();
         let end_datetime = date
-            .with_hour(window.end.hour()).unwrap()
-            .with_minute(window.end.minute()).unwrap()
-            .with_second(window.end.second()).unwrap();
+            .with_hour(window.end.hour())
+            .unwrap()
+            .with_minute(window.end.minute())
+            .unwrap()
+            .with_second(window.end.second())
+            .unwrap();
 
         while current_datetime < end_datetime {
             println!("{}", current_datetime.format("%m/%d (%a) %R-"));
-            current_datetime = current_datetime + (self.settings.step - NaiveTime::from_hms(0, 0, 0));
+            current_datetime =
+                current_datetime + (self.settings.step - NaiveTime::from_hms(0, 0, 0));
         }
     }
 

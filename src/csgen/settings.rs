@@ -1,8 +1,7 @@
-use std::collections::HashSet;
-use serde_derive::{Serialize, Deserialize};
-use chrono::{DateTime, Local, NaiveTime, Weekday};
 use crate::csgen::window::Window;
-
+use chrono::{DateTime, Local, NaiveTime, Weekday};
+use serde_derive::{Deserialize, Serialize};
+use std::collections::HashSet;
 
 // Workaround: Use NaiveTime for Duration and DateTime<Local> for Date<Local> because these
 // structures does not yet support serialization/deserialization yet.
@@ -60,7 +59,7 @@ fn default_holiday_window() -> Window {
 }
 
 fn default_step() -> NaiveTime {
-    NaiveTime::from_hms(1, 0 , 0)
+    NaiveTime::from_hms(1, 0, 0)
 }
 
 fn default_holiday_weekdays() -> HashSet<Weekday> {

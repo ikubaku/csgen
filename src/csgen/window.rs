@@ -1,5 +1,5 @@
-use serde_derive::{Serialize, Deserialize};
 use chrono::NaiveTime;
+use serde_derive::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct Window {
