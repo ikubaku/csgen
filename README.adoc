@@ -1,0 +1,19 @@
+= csgen
+
+A Chouseisan ( https://chouseisan.com/ ) date list generator.
+
+== Usage
+
+=== Show options
+[source, shell]
+----
+$ csgen -h
+----
+
+=== Basic workflow
+. Create settings template with `csgen -c`.
+. Modify the settings file.
+. Run generation with `csgen -f <settings_filename>`.
+
+== License
+This software is licensed under The MIT License.
